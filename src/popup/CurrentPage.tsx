@@ -1,15 +1,27 @@
 import React, { useEffect,useState } from "react";
 import _ from "lodash";
 import styles from "./Popup.scss"
-import { Album } from "../types"
+import { Album, Track } from "../types"
 import { TableBody, TableContainer, Table, TableRow, TableCell, Paper, Grid, Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { playlistSlice } from "../store/playlist";
 
 interface CurrentPageProps {
-  album: Album,
-  handleAddAlbumToPlaylist: Function
+  album: Album
 }
 
-const CurrentPage = ({ album, handleAddAlbumToPlaylist }: CurrentPageProps) => {
+const CurrentPage = ({ album }: CurrentPageProps) => {
+  
+  const dispatch = useDispatch();
+  const handleAddAlbumToPlaylist = (currentPageAlbum: Album) => {
+    console.log('clicked!');
+    console.log(currentPageAlbum);
+    dispatch(playlistSlice.actions.addTracksPlaylist(currentPageAlbum.tracks));
+  }
+
+  const handleAddTrackToPlaylist = (track: Track) => {
+
+  }
 
   return (
     

@@ -1,81 +1,31 @@
 import React, { useEffect,useState } from "react";
-import { Album, Track } from "../types"
+import { Grid } from '@material-ui/core';
 import _ from "lodash";
 import styles from "./Popup.scss";
 import CurrentPage from "./CurrentPage";
 import PlaylistComponent from "./Playlist";
+import MediaControlCard from "./MediaControl";
+import {useSelector} from "../store"
 
 export default function Popup() {
-  const [currentAlbum, setCurrentAlbum] = useState<Album>();
-  const [playlist, setPlaylist] = useState<Track[]>();
-
-  const handleAddAlbumToPlaylist = (currentAlbum: Album) => {
-    console.log('clicked!');
-    console.log(currentAlbum);
-    chrome.storage.local.get('playlist', (playlist) => {
-      const oldPlaylist: Track[] = playlist.playlist;
-      let tracks: Track[] = [];
-      console.log(oldPlaylist);
-      if (Array.isArray(oldPlaylist)) {
-        console.log('concat');
-        tracks = oldPlaylist.concat(currentAlbum.tracks);
-      } else {
-        tracks = currentAlbum.tracks;
-        console.log('first added');
-      }
-      
-      chrome.storage.local.set({ playlist: tracks }, () => {
-        console.log(currentAlbum.info.title + ' was added!');
-      })
-    })
-  }
-
-  const handleAddTrackToPlaylist = (track: Track) => {
-    chrome.storage.local.get('playlist', (playlist: Track[]) => {
-      const tracks = playlist.push(track);
-      chrome.storage.local.set({ playlist: tracks }, () => {
-        console.log(track + ' was added!');
-      })
-    })
-  }
-  
-  const handleStartAudio = (track: Track) => {
-    console.log('play button clicked');
-    const message = {
-      audioSrc: track.file,
-      state: 'start'
-    };
-    console.log(track);
-    chrome.runtime.sendMessage(message);
-  };
+  const playlist = useSelector(state => state.playlist);
+  const currentPageAlbum = useSelector(state => state.currentPageAlbum);
 
   useEffect(() => {
     chrome.tabs.executeScript({
       file: 'js/eventPage.js'
     });
-    console.log('test');
-    chrome.storage.local.get('playlist', (playlist) => {
-      setPlaylist(playlist.playlist);
-      console.log(playlist);
-      console.log('playlist set!');
-    });
-
-    chrome.storage.onChanged.addListener((changes, areaName)=> {
-      chrome.storage.local.get('playlist', (playlist)=>{
-        setPlaylist(playlist.playlist);
-      })
-    });
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse)=>{
-      if (message.album) {
-        setCurrentAlbum(message.album)
-      };
-    });
   }, []);
 
   return <div className={styles.popupContainer}>
-      <>
-      <CurrentPage album={currentAlbum} handleAddAlbumToPlaylist={handleAddAlbumToPlaylist} ></CurrentPage>
-      <PlaylistComponent tracks={playlist} handleStartAudio={handleStartAudio}></PlaylistComponent>
-      </>
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <CurrentPage album={currentPageAlbum} ></CurrentPage>
+      </Grid>
+      <Grid item xs={6}>
+        <MediaControlCard></MediaControlCard>
+        <PlaylistComponent></PlaylistComponent>
+      </Grid>
+    </Grid>
   </div>;
 }

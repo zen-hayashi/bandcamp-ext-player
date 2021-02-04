@@ -1,6 +1,10 @@
-export interface BandCampPlayerStorage {
-    tracks: Track[],
-    currentTrack: number
+export interface NowPlaying {
+    track: Track,
+    playing: boolean
+}
+
+export interface Playlist {
+    tracks: Track[]
 }
 
 export interface CurrentState {

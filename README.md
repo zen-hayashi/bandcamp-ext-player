@@ -31,3 +31,14 @@ PopUp : NowPlaying
 PopUp : clearPlaylist()
 PopUp : addPlaylist()
 ```
+
+## TODO
+
+- ウィッシュリスト登録機能
+- カートに入れる
+- デザインちゃんとする
+- 再生ボタンの反映のタイミングがなんかおかしい問題
+- 掛かってる曲をハイライト
+- プレイリストから曲削除
+- 掛かってるCurrentAlbumのUIが必要？
+- 独自ドメインの奴どうやって対応しよ？

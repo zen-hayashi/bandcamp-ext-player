@@ -1,4 +1,7 @@
 import { Album, AlbumInfo, Track } from "./types";
+import { Store } from 'webext-redux'
+
+const store = new Store();
 
 const main = () => {
     console.log("contents js excute!");
@@ -13,7 +16,7 @@ const main = () => {
         title: currentAlbum.current.title,
         artist: currentAlbum.artist,
         url: currentAlbum.url,
-        image: 'http://placehold.jp/150x150.png',
+        image: window.document.querySelector('#tralbumArt img').getAttribute('src'),
         releaseDate: currentAlbum.album_release_date,
         label: currentBand.name,
         labelUrl: window.location.origin
@@ -27,8 +30,7 @@ const main = () => {
         "album": album
     }
     console.log(message);
-    chrome.runtime.sendMessage(message);
-    return true;
+    store.dispatch({ type: 'currentPageAlbum/setCurrentPageAlbum', payload: album});
 }
 
 const getTracks = (album: any, albumInfo: AlbumInfo) :Track[] => {

@@ -1,7 +1,24 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import Popup from './Popup';
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { Store } from 'webext-redux'
 
-chrome.tabs.query({ active: true, currentWindow: true }, tab => {
-    ReactDOM.render(<Popup />, document.getElementById('popup'));
-});
+function initApp() {
+    const store = new Store();
+    store.subscribe(()=>{
+        console.log(store.getState());
+    })
+
+    store.ready().then(() => {
+        // The store implements the same interface as Redux's store
+        // so you can use tools like `react-redux` no problem!
+        render(
+            <Provider store={store}>
+                <Popup />
+            </Provider>
+            , document.getElementById('popup'));
+    })
+};
+
+initApp();
