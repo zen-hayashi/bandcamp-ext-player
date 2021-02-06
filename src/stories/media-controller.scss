@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+#root {
+  width: 320px;
+  background-color: $background-color;
+  display: flex;
+  position: relative;
+}
+.details {
+  margin: 0 auto;
+  width: 320px;
+  height: 320px;
+  background-color: $base-color;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  margin: 0 auto;
+  color: $text-color;
+  flex: 1 0 auto;
+}
+.cover {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.controls {
+  height: 50px;
+  color: $text-color;
+  display: flex;
+  margin: 0 auto;
+}

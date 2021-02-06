@@ -13,10 +13,10 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@storybook/addon-actions": "^6.1.15",
-    "@storybook/addon-essentials": "^6.1.15",
-    "@storybook/addon-links": "^6.1.15",
-    "@storybook/react": "^6.1.15",
+    "@storybook/addon-actions": "^6.1.17",
+    "@storybook/addon-essentials": "^6.1.17",
+    "@storybook/addon-links": "^6.1.17",
+    "@storybook/react": "^6.1.17",
     "@types/chrome": "^0.0.60",
     "@types/react": "^16.9.32",
     "@types/react-dom": "^16.9.6",
@@ -47,6 +47,7 @@
     "react-h5-audio-player": "^3.5.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
+    "storybook": "^6.1.17",
     "typings-for-css-modules-loader": "^1.7.0",
     "webext-redux": "^2.1.7"
   }

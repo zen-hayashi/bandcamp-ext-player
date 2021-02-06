@@ -22,15 +22,19 @@ const main = () => {
         labelUrl: window.location.origin
     }
     const tracks: Track[] = getTracks(currentAlbum, albumInfo)
-    const album: Album = {
-        info: albumInfo,
-        tracks: tracks
-    }
-    const message = {
-        "album": album
-    }
-    console.log(message);
-    store.dispatch({ type: 'currentPageAlbum/setCurrentPageAlbum', payload: album});
+    
+    createButton(tracks);
+}
+
+const createButton = (tracks) => {
+    const button = window.document.createElement('button');
+    const text = window.document.createTextNode('add to playlist');
+    button.appendChild(text);
+    const target = window.document.querySelector('#name-section')
+    button.addEventListener('click', ()=> {
+        store.dispatch({ type: 'playlist/addTracksPlaylist', payload: tracks });
+    })
+    target.appendChild(button);
 }
 
 const getTracks = (album: any, albumInfo: AlbumInfo) :Track[] => {

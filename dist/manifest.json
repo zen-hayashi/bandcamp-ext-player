@@ -12,6 +12,13 @@
         "default_popup": "popup.html"
     },
 
+    "content_scripts": [
+    {
+        "matches": [ "https://*.bandcamp.com/*" ],
+        "js": [ "js/eventPage.js" ]
+    }
+],
+
     "background": {
         "page": "background.html",
         "persistent": false

@@ -5,6 +5,7 @@ import _  from "lodash";
 const initialState:Track[] = [];
 
 export const addTracksPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (state, action) => {
+    console.log('tracks added!')
     return _.concat(state, action.payload)
 }
 export const clearPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (state, action) => {

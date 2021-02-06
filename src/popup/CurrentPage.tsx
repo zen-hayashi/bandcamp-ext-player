@@ -5,6 +5,7 @@ import { Album, Track } from "../types"
 import { TableBody, TableContainer, Table, TableRow, TableCell, Paper, Grid, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { playlistSlice } from "../store/playlist";
+import TrackRow from "../component/TrackRow";
 
 interface CurrentPageProps {
   album: Album
@@ -27,7 +28,7 @@ const CurrentPage = ({ album }: CurrentPageProps) => {
     
     <Paper>
       <Grid container spacing={2} direction="column">
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Grid item xs={1} >
             {
               album &&
@@ -50,7 +51,7 @@ const CurrentPage = ({ album }: CurrentPageProps) => {
                 {
                   album?.tracks && album.tracks.map((track, i) =>
                     <TableRow key={i}>
-                      <TableCell><a href={track.url}>{i}.{track.title}</a></TableCell>
+                      <TrackRow track={track}></TrackRow>
                     </TableRow>
                   )
                 }

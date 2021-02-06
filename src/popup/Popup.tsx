@@ -11,18 +11,12 @@ export default function Popup() {
   const playlist = useSelector(state => state.playlist);
   const currentPageAlbum = useSelector(state => state.currentPageAlbum);
 
-  useEffect(() => {
-    chrome.tabs.executeScript({
-      file: 'js/eventPage.js'
-    });
-  }, []);
-
   return <div className={styles.popupContainer}>
     <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <CurrentPage album={currentPageAlbum} ></CurrentPage>
+      <Grid item xs={4}>
+        
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={8}>
         <MediaControlCard></MediaControlCard>
         <PlaylistComponent></PlaylistComponent>
       </Grid>
