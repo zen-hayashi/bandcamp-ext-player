@@ -1,22 +1,17 @@
 @import './variables.scss';
 
-.media-button {
+.mediaButton {
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
-  border: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 1;
-  height: 1;
-  margin: 0 auto;
   position: relative;
-  color: $text-color;
+  color: white;
+  font-size: 14px;
+  padding: 15px 15px;
 }
-.media-button:hover {
+.mediaButton:hover {
   background: #DDDDDD;
 }
-.media-button:active {
+.mediaButton:active {
   content: "";
   background: #999999;
   border-radius: 100%;
@@ -39,24 +34,4 @@
     opacity: 0.5;
     transform: scale(1.0);
   }
-}
-
-.media-button--primary {
-  background-color: $primary-color;
-}
-.media-button--secondary {
-  background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
-}
-.media-button--small {
-  font-size: 12px;
-  padding: 10px 10px;
-}
-.media-button--medium {
-  font-size: 14px;
-  padding: 15px 15px;
-}
-.media-button--large {
-  font-size: 16px;
-  padding: 20px 20px;
 }

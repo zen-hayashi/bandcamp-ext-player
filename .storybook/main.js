@@ -9,7 +9,20 @@ module.exports = {
     // Make whatever fine-grained changes you need
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      use: [
+        {
+          loader: "style-loader" // Creates style nodes from JS strings,
+        },
+        {
+          loader: "css-loader", // Translates CSS into CommonJS
+          options: {
+            modules: true
+          }
+        },
+        {
+          loader: "sass-loader" // Compiles Sass to CSS
+        }
+      ],
       include: path.resolve(__dirname, '../'),
     });
 
@@ -22,7 +35,8 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
+    'storybook-css-modules-preset',
   ]
 }
 // .storybook/main.js

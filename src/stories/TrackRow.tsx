@@ -4,36 +4,36 @@ import { Track } from "../types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, Table, TableBody, TableRow, Typography, TableCell } from "@material-ui/core";
 import { faPlay, faExternalLinkAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
-import  "./playlist.scss";
+import  styles from "./playlist.scss";
 import { nowPlayingSlice } from "../store/nowPlaying";
 import { MediaButton, MediaButtonProps } from "./MediaButton";
 
 export interface TrackRowProps {
     track: Track,
-    onClick?: () => void
+    handleSetNowPlaying?: (track) => void
 }
 
-export const TrackRow = ({track} :TrackRowProps) =>{
+export const TrackRow = ({ track, handleSetNowPlaying } :TrackRowProps) =>{
 
     return <>
-        <TableCell className='cover-img-container'>
-            <img className='cover-img' src={track.album.image ? track.album.image: ''}></img>
-            <div className='button-div'>
-                <FontAwesomeIcon className='hover-button' icon={faPlay} size="lg"></FontAwesomeIcon>
+        <TableCell className={styles.coverImgContainer}>
+            <img className={styles.coverImg} src={track.album.image ? track.album.image: ''}></img>
+            <div className={styles.buttonDiv}>
+                <FontAwesomeIcon icon={faPlay} size="lg" onClick={() => handleSetNowPlaying(track)}></FontAwesomeIcon>
             </div>
         </TableCell>
-        <TableCell className='detail'>
-            <Typography className='detail'>{track.title}</Typography>
-            <Typography className='detail' >
+        <TableCell className={styles.detail}>
+            <Typography className={styles.detail}>{track.title}</Typography>
+            <Typography className={styles.detail}>
                 {track.album.title}
             </Typography>
-            <Typography className='detail' >
+            <Typography className={styles.detail}>
                 {track.album.label}
             </Typography>
         </TableCell>
         <TableCell>
             <a href={track.album.url}>
-                <FontAwesomeIcon className='action' icon={faExternalLinkAlt} size="lg"></FontAwesomeIcon>
+                <FontAwesomeIcon className={styles.action} icon={faExternalLinkAlt} size="lg"></FontAwesomeIcon>
             </a>
         </TableCell>
     </>

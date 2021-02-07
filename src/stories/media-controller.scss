@@ -1,21 +1,29 @@
 @import './variables.scss';
 
-#root {
-  width: 320px;
-  background-color: $background-color;
-  display: flex;
+.card {
+  width: 270px;
   position: relative;
 }
+
+.infoTextDiv{
+  background-color: $base-color;
+  opacity: 0.3;
+}
+
+.infoText{
+  background: #13131388;
+}
+
 .details {
   margin: 0 auto;
-  width: 320px;
-  height: 320px;
+  width: 100%;
   background-color: $base-color;
   color: $text-color;
   display: flex;
   flex-direction: column;
 }
 .content {
+  height: 270px;
   margin: 0 auto;
   color: $text-color;
   flex: 1 0 auto;
@@ -28,6 +36,7 @@
 .controls {
   height: 50px;
   color: $text-color;
+  background-color: $background-color;
   display: flex;
   margin: 0 auto;
 }

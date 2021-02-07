@@ -4,19 +4,19 @@
   width: 500px;
 }
 
-.track-row {
+.trackRow {
   width: 100%;
   color: $text-color;
   background-color: $background-color;
 }
 
-.cover-img-container {
+.coverImgContainer {
   padding: 0 !important;
   width: 100px;
   position: relative;
 }
 
-.cover-img {
+.coverImg {
   margin: 0;
   width: 80px;
 }
@@ -25,10 +25,9 @@
   color: $text-color;
   font-size: 13px !important;
   align-items: center;
-
 }
 
-.button-div {
+.buttonDiv {
   background-color: $base-color;
   top: 0;
   left: 0;
@@ -43,18 +42,14 @@
   
   :hover {
     opacity: 0.7;
+    padding: 0 !important;
   }
 }
 .action{
   color: $text-color;
 }
 
-.button-div:hover {
-  padding: 0 !important;
-  opacity: 0.7;
-}
-
-.clear-button {
+.clearButton {
   margin-right: 10px;
   span {
     color: #FFFFFFFF;
