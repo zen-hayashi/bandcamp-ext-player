@@ -1,13 +1,15 @@
 import playlistReducer from "./playlist";
 import currentPageAlbumReducer from "./currentPageAlbum";
 import nowPlayingReducer from "./nowPlaying";
+import albumListReducer from "./albumList";
 import { useSelector as rawUseSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 const reducer = combineReducers({
     playlist: playlistReducer,
     currentPageAlbum: currentPageAlbumReducer,
-    nowPlaying: nowPlayingReducer
+    nowPlaying: nowPlayingReducer,
+    albumList: albumListReducer
 })
 
 const store = configureStore({ reducer });

@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
-import { Theme, createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import {
+    Info,
+    InfoTitle,
+    InfoSubtitle,
+    InfoCaption,
+} from '@mui-treasury/components/info';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import { MediaButton } from './MediaButton'
 import { NowPlaying, Track } from "../types";
-import styles from './media-controller.scss';
+import { Row, Item, Column } from '@mui-treasury/components/flex';
+import PauseIcon from '@material-ui/icons/Pause';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import _ from 'lodash'
 
 
@@ -24,39 +26,46 @@ export interface MediaControllerProps{
 }
 
 export const MediaController: React.FC<MediaControllerProps> = ({ track, playing, setPrevTrack, setNextTrack, handleAudioState }) => {
-
+    const avatarStyles = useDynamicAvatarStyles({ size: 70 });
     return (
-        <Card className={styles.card}>
-            <div className={styles.details}>
-                <CardContent style={{
-                    backgroundImage: `url(${track?.album.image})`,
-                    backgroundSize: 'contain'
-                }} className={styles.content}>
-                    <div>
-                        <Typography component="h5" variant="h5" className={styles.infoText}>
-                            {track?.title}
-                        </Typography>
-                        <Typography variant="subtitle1" className={styles.infoText}>
-                            {track?.album.title}
-                        </Typography>
-                        <Typography variant="subtitle1" className={styles.infoText}>
-                            {track?.album.artist}
-                        </Typography>
-                    </div>
-                </CardContent>
-                <div className={styles.controls}>
-                    <MediaButton type='prev' onClick={() => setPrevTrack()}></MediaButton>
+        <Column gap={2}>
+            <Row borderBottom={1} borderColor="grey.500">
+                <Item>
+                    <Avatar
+                        variant={'rounded'}
+                        classes={avatarStyles}
+                        src={track?.album.image}
+                    />
+                </Item>
+                <Info>
+                    <InfoCaption>{track?.album.title}</InfoCaption>
+                    <InfoTitle>{track?.title}</InfoTitle>
+                    <InfoSubtitle>{track?.album.label}</InfoSubtitle>
+                </Info>
+            </Row>
+            <Row alignItems="center"
+                justifyContent="center">
+                <Item>
+                    <IconButton aria-label="previous">
+                        <SkipPreviousIcon />
+                    </IconButton>
                     {
                         !playing &&
-                        <MediaButton type='play' onClick={() => handleAudioState(true)}></MediaButton>
+                        <IconButton aria-label="play">
+                            <PlayArrowIcon />
+                        </IconButton>
                     }
                     {
                         playing &&
-                        <MediaButton type='pause' onClick={() => handleAudioState(false)}></MediaButton>
+                        <IconButton aria-label="pause">
+                            <PauseIcon />
+                        </IconButton>
                     }
-                    <MediaButton type='next' onClick={() => setNextTrack()}></MediaButton>
-                </div>
-            </div>
-        </Card>
+                    <IconButton aria-label="next">
+                        <SkipNextIcon />
+                    </IconButton>
+                </Item>
+            </Row>
+        </Column>
     );
 }

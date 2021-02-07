@@ -3,7 +3,11 @@ export interface NowPlaying {
     playing: boolean
 }
 
-export interface Playlist {
+export interface AlbumList {
+    Albums: Album[]
+}
+
+export interface TrackList {
     tracks: Track[]
 }
 
@@ -23,8 +27,9 @@ export interface AlbumInfo {
 }
 
 export interface Album {
+    id: number
     info: AlbumInfo,
-    tracks: Track[]
+    tracks?: Track[]
 }
 
 export interface Track {

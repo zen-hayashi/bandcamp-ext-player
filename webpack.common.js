@@ -25,24 +25,20 @@ module.exports = {
             loader: "style-loader" // Creates style nodes from JS strings,
           },
           {
-            loader: "css-loader", // Translates CSS into CommonJS
-            options: {
-              modules: true
-            }
+            loader: "css-loader"
           },
           {
             loader: "sass-loader" // Compiles Sass to CSS
           }
         ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        loader: 'file-loader?name=../font/[name].[ext]'
       }
     ]
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
-  },
-  plugins: [
-    new TypedCssModulesPlugin({
-      globPattern: 'src/**/*.scss',
-    }),
-  ]
+  }
 };

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import { Track } from "../types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Card, Table, TableBody, TableRow, Typography, TableCell } from "@material-ui/core";
-import { faPlay, faExternalLinkAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
-import  styles from "./playlist.scss";
-import { nowPlayingSlice } from "../store/nowPlaying";
-import { MediaButton, MediaButtonProps } from "./MediaButton";
+import Avatar from '@material-ui/core/Avatar';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { Row, Item } from '@mui-treasury/components/flex';
+import {
+    Info,
+    InfoTitle,
+    InfoSubtitle,
+    InfoCaption,
+} from '@mui-treasury/components/info';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import IconButton from '@material-ui/core/IconButton';
+import { useMusicInfoStyles } from '@mui-treasury/styles/info/music';
 
 export interface TrackRowProps {
     track: Track,
@@ -14,27 +20,18 @@ export interface TrackRowProps {
 }
 
 export const TrackRow = ({ track, handleSetNowPlaying } :TrackRowProps) =>{
-
     return <>
-        <TableCell className={styles.coverImgContainer}>
-            <img className={styles.coverImg} src={track.album.image ? track.album.image: ''}></img>
-            <div className={styles.buttonDiv}>
-                <FontAwesomeIcon icon={faPlay} size="lg" onClick={() => handleSetNowPlaying(track)}></FontAwesomeIcon>
-            </div>
-        </TableCell>
-        <TableCell className={styles.detail}>
-            <Typography className={styles.detail}>{track.title}</Typography>
-            <Typography className={styles.detail}>
-                {track.album.title}
-            </Typography>
-            <Typography className={styles.detail}>
-                {track.album.label}
-            </Typography>
-        </TableCell>
-        <TableCell>
-            <a href={track.album.url}>
-                <FontAwesomeIcon className={styles.action} icon={faExternalLinkAlt} size="lg"></FontAwesomeIcon>
-            </a>
-        </TableCell>
+        <Row>
+            <Item alignContent='center' justifyContent='center'>
+                <IconButton aria-label="play">
+                    <PlayCircleOutlineIcon />
+                </IconButton>
+            </Item>
+            <Item justifyItems='center'>
+                <Info useStyles={useMusicInfoStyles}>
+                <InfoTitle>{track.title}</InfoTitle>
+            </Info>
+            </Item>
+        </Row>
     </>
 }
