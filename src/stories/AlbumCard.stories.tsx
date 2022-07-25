@@ -1,6 +1,6 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react';
 
 import { AlbumCard, AlbumCardProps } from './AlbumCard';
 
@@ -9,7 +9,11 @@ export default {
   component: AlbumCard
 } as Meta;
 
-const Template: Story<AlbumCardProps> = (args) => <AlbumCard {...args} />;
+const Template: Story<AlbumCardProps> = (args) => {
+  return <div>
+    <AlbumCard {...args} />
+  </div>
+  };
 
 export const Default = Template.bind({});
 Default.args = {

@@ -1,19 +1,5 @@
 import React from 'react';
-import {Avatar, Link} from '@mui/material';
-import {
-    Info,
-    InfoTitle,
-    InfoSubtitle,
-    InfoCaption,
-} from '@mui-treasury/components/info';
-import IconButton from '@mui/material/IconButton';
 import { NowPlaying, Track } from "../types";
-import { Row, Item, Column } from '@mui-treasury/components/flex';
-import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import _ from 'lodash'
 
 
@@ -26,48 +12,22 @@ export interface MediaControllerProps{
 }
 
 export const MediaController: React.FC<MediaControllerProps> = ({ track, playing, setPrevTrack, setNextTrack, handleAudioState }) => {
-    const avatarStyles = useDynamicAvatarStyles({ size: 70 });
     return (
-        <Column gap={2}>
-            <Row borderBottom={1} borderColor="grey.500">
-                <Item>
-                    <Link href={track.album.url} target='_blank'>
-                    <Avatar
-                        variant={'rounded'}
-                        classes={avatarStyles}
-                        src={track?.album.image}
-                    />
-                    </Link>
-                </Item>
-                <Info>
-                    <InfoCaption>{track?.album.title}</InfoCaption>
-                    <InfoTitle>{track?.title}</InfoTitle>
-                    <InfoSubtitle>{track?.album.label}</InfoSubtitle>
-                </Info>
-            </Row>
-            <Row alignItems="center"
-                justifyContent="center">
-                <Item>
-                    <IconButton aria-label="previous" onClick={setPrevTrack}>
-                        <SkipPreviousIcon />
-                    </IconButton>
-                    {
-                        !playing &&
-                        <IconButton aria-label="play" onClick={() => handleAudioState(true)}>
-                            <PlayArrowIcon />
-                        </IconButton>
-                    }
-                    {
-                        playing &&
-                        <IconButton aria-label="pause" onClick={() => handleAudioState(false)}>
-                            <PauseIcon />
-                        </IconButton>
-                    }
-                    <IconButton aria-label="next" onClick={setNextTrack}>
-                        <SkipNextIcon />
-                    </IconButton>
-                </Item>
-            </Row>
-        </Column>
+        <div>
+            <img src={track?.album.image}></img>
+            <p>{track?.album.title}</p>
+            <p>{track?.title}</p>
+            <p>{track?.album.label}</p>
+            <div  aria-label="previous" onClick={setPrevTrack}>前へ</div>
+            {
+                !playing &&
+                <div  aria-label="play" onClick={() => handleAudioState(true)}>再生</div>
+            }
+            {
+                playing &&
+                <div  aria-label="pause" onClick={() => handleAudioState(false)}>停止</div>
+            }
+            <div  aria-label="next" onClick={setNextTrack}>次へ</div>
+        </div>
     );
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Grid } from "@mui/material";
-import { Row, Column, Item } from '@mui-treasury/components/flex';
+import { Story, Meta } from '@storybook/react';
 import { PlaylistComponent, PlaylistComponentProps } from './Playlist';
 
 export default {
@@ -11,9 +9,9 @@ export default {
 } as Meta;
 
 const Template: Story<PlaylistComponentProps> = (args) => {
-  return <Column gap={2}>
+  return <div>
     <PlaylistComponent {...args} />
-  </Column >
+  </div>
 };
 
 export const Default = Template.bind({});

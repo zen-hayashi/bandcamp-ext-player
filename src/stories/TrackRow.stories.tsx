@@ -1,9 +1,7 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Row, Column, Item } from '@mui-treasury/components/flex';
+import { Story, Meta } from '@storybook/react';
 import { TrackRow, TrackRowProps } from './TrackRow';
-import { TableRow, Table } from @mui/material';
 
 export default {
   title: 'Example/TrackRow',
@@ -11,9 +9,9 @@ export default {
 } as Meta;
 
 const Template: Story<TrackRowProps> = (args) => {
-  return <Column gap={2}>
+  return <div>
       <TrackRow {...args} />
-  </Column>
+  </div>
 };
 
 export const Default = Template.bind({});

@@ -1,23 +1,14 @@
 import React from 'react';
-import cx from 'clsx';
-import { makeStyles } from '@mui/styles';
 import _ from "lodash";
 import { AlbumCard, AlbumCardProps } from "./AlbumCard";
 import { Album } from "../types";
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { Typography } from '@mui/material';
 
 
 export interface AlbumSelectorProps {
     albums: Album[],
     addFavorite?: (album: Album) => void
 }
-const useStyles = makeStyles(() => ({
-    root: {
-        height: '170px'
-    }
-}));
 
 export const AlbumSelector = ({ albums, addFavorite }: AlbumSelectorProps) =>{
     const responsive = {
@@ -27,11 +18,9 @@ export const AlbumSelector = ({ albums, addFavorite }: AlbumSelectorProps) =>{
         }
     };
     
-    const styles = useStyles();
     return <Carousel 
         showDots={true}
         infinite={true}
-        containerClass={cx(styles.root, "carousel-container")}
         itemClass="carousel-item-margin-5-px"
         responsive={responsive}>
             {
