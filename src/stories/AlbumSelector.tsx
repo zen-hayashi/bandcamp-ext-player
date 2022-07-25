@@ -10,25 +10,34 @@ import { Typography } from '@material-ui/core';
 
 
 export interface AlbumSelectorProps {
-    albums: Album[]
+    albums: Album[],
+    addFavorite?: (album: Album) => void
 }
+const useStyles = makeStyles(() => ({
+    root: {
+        height: '170px'
+    }
+}));
 
-export const AlbumSelector = ({ albums }: AlbumSelectorProps) =>{
+export const AlbumSelector = ({ albums, addFavorite }: AlbumSelectorProps) =>{
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 600 },
-            items: 3
+            items: 5
         }
     };
+    
+    const styles = useStyles();
     return <Carousel 
         showDots={true}
         infinite={true}
-        containerClass="carousel-container"
+        containerClass={cx(styles.root, "carousel-container")}
         itemClass="carousel-item-margin-5-px"
         responsive={responsive}>
             {
                 albums && albums.map(album => {
-                    <AlbumCard album={album} showInfo={false}></AlbumCard>
+                    console.log(album);
+                    return <AlbumCard album={album} showInfo={false} addFavorite={addFavorite}></AlbumCard>
                 })
             }
     </Carousel>

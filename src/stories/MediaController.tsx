@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import {Avatar, Link} from '@material-ui/core';
 import {
     Info,
     InfoTitle,
@@ -31,11 +31,13 @@ export const MediaController: React.FC<MediaControllerProps> = ({ track, playing
         <Column gap={2}>
             <Row borderBottom={1} borderColor="grey.500">
                 <Item>
+                    <Link href={track.album.url} target='_blank'>
                     <Avatar
                         variant={'rounded'}
                         classes={avatarStyles}
                         src={track?.album.image}
                     />
+                    </Link>
                 </Item>
                 <Info>
                     <InfoCaption>{track?.album.title}</InfoCaption>
@@ -46,22 +48,22 @@ export const MediaController: React.FC<MediaControllerProps> = ({ track, playing
             <Row alignItems="center"
                 justifyContent="center">
                 <Item>
-                    <IconButton aria-label="previous">
+                    <IconButton aria-label="previous" onClick={setPrevTrack}>
                         <SkipPreviousIcon />
                     </IconButton>
                     {
                         !playing &&
-                        <IconButton aria-label="play">
+                        <IconButton aria-label="play" onClick={() => handleAudioState(true)}>
                             <PlayArrowIcon />
                         </IconButton>
                     }
                     {
                         playing &&
-                        <IconButton aria-label="pause">
+                        <IconButton aria-label="pause" onClick={() => handleAudioState(false)}>
                             <PauseIcon />
                         </IconButton>
                     }
-                    <IconButton aria-label="next">
+                    <IconButton aria-label="next" onClick={setNextTrack}>
                         <SkipNextIcon />
                     </IconButton>
                 </Item>

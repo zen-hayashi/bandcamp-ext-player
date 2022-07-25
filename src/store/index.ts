@@ -4,6 +4,7 @@ import nowPlayingReducer from "./nowPlaying";
 import albumListReducer from "./albumList";
 import { useSelector as rawUseSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const reducer = combineReducers({
     playlist: playlistReducer,

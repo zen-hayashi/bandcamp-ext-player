@@ -27,9 +27,25 @@ export interface AlbumInfo {
 }
 
 export interface Album {
-    id: number
+    id: number,
     info: AlbumInfo,
-    tracks?: Track[]
+    tracks?: Track[],
+    secret?: Secret,
+    domain: string,
+    liked: boolean,
+    bandId: string
+}
+
+export interface Secret {
+    refToken: string,
+    cookie: string,
+    fanId: string,
+    crumbs: Crumbs
+}
+
+export interface Crumbs {
+    uncollect_item_cb: string
+    collect_item_cb: string
 }
 
 export interface Track {

@@ -1,4 +1,4 @@
-import { Album, AlbumInfo, Track } from "./types";
+import { Album, AlbumInfo, Track, Secret } from "./types";
 import { Store } from 'webext-redux'
 import _ from "lodash";
 
@@ -10,11 +10,26 @@ const main = () => {
     console.log(state);
     
     const pageData = window.document.querySelectorAll("[data-embed]")[0];
+    const pageCrumbs = window.document.querySelector("#js-crumbs-data");
     if (!pageData) {
         return null 
     };
     const currentAlbum = JSON.parse(pageData.getAttribute("data-tralbum"));
     const currentBand = JSON.parse(pageData.getAttribute("data-band"));
+    const refToken = JSON.parse(pageData.getAttribute("data-referrer-token"));
+    const fanId = JSON.parse(pageData.getAttribute("data-tralbum-collect-info")).fan_id;
+    const crumbs = JSON.parse(pageCrumbs.getAttribute('data-crumbs'));
+    const cookie = window.document.cookie;
+    const secret = {
+        refToken,
+        fanId,
+        cookie,
+        crumbs: {
+            uncollect_item_cb: crumbs.uncollect_item_cb,
+            collect_item_cb: crumbs.collect_item_cb
+        }
+    }
+
     const albumInfo: AlbumInfo = {
         title: currentAlbum.current.title,
         artist: currentAlbum.artist,
@@ -28,7 +43,11 @@ const main = () => {
     const album: Album = {
         id: currentAlbum.id,
         info: albumInfo,
-        tracks: tracks
+        tracks: tracks,
+        secret: secret,
+        domain: window.location.origin,
+        liked: false,
+        bandId: currentBand.id
     }
     createButton(state ,album);
 }

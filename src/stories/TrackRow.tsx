@@ -23,7 +23,7 @@ export const TrackRow = ({ track, handleSetNowPlaying } :TrackRowProps) =>{
     return <>
         <Row>
             <Item alignContent='center' justifyContent='center'>
-                <IconButton aria-label="play">
+                <IconButton aria-label="play" onClick={()=>handleSetNowPlaying(track)}>
                     <PlayCircleOutlineIcon />
                 </IconButton>
             </Item>
