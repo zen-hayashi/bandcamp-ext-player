@@ -1,6 +1,4 @@
-# Chrome Extension (built with TypeScript + React)
-
-> This project is a boilerplate project to allow you to quickly build chrome extensions using TypeScript and React.
+# Bandcamp Player Chrome Extension 
 
 ## Building
 
@@ -8,12 +6,6 @@
 2.  `npm i`
 3.  `npm run dev` to compile once or `npm run watch` to run the dev task in watch mode
 4.  `npm run build` to build a production (minified) version
-
-## Installation
-
-1.  Complete the steps to build the project above
-2.  Go to [_chrome://extensions_](chrome://extensions) in Google Chrome
-3.  With the developer mode checkbox ticked, click **Load unpacked extension...** and select the _dist_ folder from this repo
 
 ## Architecture
 
@@ -40,5 +32,18 @@ PopUp : addPlaylist()
 - 再生ボタンの反映のタイミングがなんかおかしい問題
 - 掛かってる曲をハイライト
 - プレイリストから曲削除
+- url期限切れ曲の削除
 - 掛かってるCurrentAlbumのUIが必要？
 - 独自ドメインの奴どうやって対応しよ？
+
+add to wishlist
+
+post
+/collect_item_cb
+
+fan_id: 1182997
+item_id: 3295478132
+item_type: album
+band_id: 3570542698
+ref_token: 438806968s0a3295478132x1658590374
+crumb: |collect_item_cb|1658592174|I8hsTJpjrcJIkrP8rqEg5eTm9fs=
