@@ -1,18 +1,18 @@
 import React from 'react';
-import {Avatar, Link} from '@material-ui/core';
+import {Avatar, Link} from '@mui/material';
 import {
     Info,
     InfoTitle,
     InfoSubtitle,
     InfoCaption,
 } from '@mui-treasury/components/info';
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 import { NowPlaying, Track } from "../types";
 import { Row, Item, Column } from '@mui-treasury/components/flex';
-import PauseIcon from '@material-ui/icons/Pause';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import _ from 'lodash'
 

@@ -5,7 +5,7 @@ import axios from "axios";
 
 const initialState:Album[] = [];
 
-export const addFavoriteThunk = createAsyncThunk(
+export const addFavoriteThunk = createAsyncThunk<Album, Album, {}>(
     'albumList/addFavorite',
     async (album: Album, _thunkAPI) => {
         const endpoint = album.domain + '/collect_item_cb';

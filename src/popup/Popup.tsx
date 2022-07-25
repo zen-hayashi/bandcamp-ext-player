@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import _ from "lodash";
 import styles from "./Popup.scss";
 import { MediaController,MediaControllerProps } from "../stories/MediaController";
@@ -10,7 +10,7 @@ import usePlaylist from "../hooks/usePlaylist";
 import { Row, Column, Item } from '@mui-treasury/components/flex';
 import { useDispatch } from "react-redux";
 import { useSelector } from "../store";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { Track, Album } from "../types";
 import { addFavoriteThunk } from '../store/albumList'
 
@@ -29,14 +29,15 @@ export default function Popup() {
   const PlaylistComponentProps = usePlaylist();
   const mediaControllerProps = useNowPlaying();
   const styles = useStyles();
-  const addFavorite = (album: Album) => {
-    console.log(album);
-    dispatch(addFavoriteThunk(album));
-  } 
+  // const addFavorite = (album: Album) => {
+  //   console.log(album);
+  //   dispatch(addFavoriteThunk(album));
+  // } 
 
   return <Grid container spacing={2} className={styles.root}>
       <Grid item xs={12} >
-        <AlbumSelector albums={albumList} addFavorite={addFavorite}></AlbumSelector>
+        <AlbumSelector albums={albumList} ></AlbumSelector>
+        {/* <AlbumSelector albums={albumList} addFavorite={addFavorite}></AlbumSelector> */}
       </Grid>
     <Grid item xs={4} className={styles.playlistSection}>
         <MediaController {...mediaControllerProps}></MediaController>

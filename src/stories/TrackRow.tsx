@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import { Track } from "../types";
-import Avatar from '@material-ui/core/Avatar';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Row, Item } from '@mui-treasury/components/flex';
 import {
     Info,
     InfoTitle,
-    InfoSubtitle,
-    InfoCaption,
 } from '@mui-treasury/components/info';
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import IconButton from '@material-ui/core/IconButton';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import IconButton from '@mui/material/IconButton';
 import { useMusicInfoStyles } from '@mui-treasury/styles/info/music';
 
 export interface TrackRowProps {

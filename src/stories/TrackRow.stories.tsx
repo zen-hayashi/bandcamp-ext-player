@@ -3,7 +3,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Row, Column, Item } from '@mui-treasury/components/flex';
 import { TrackRow, TrackRowProps } from './TrackRow';
-import { TableRow, Table } from '@material-ui/core';
+import { TableRow, Table } from @mui/material';
 
 export default {
   title: 'Example/TrackRow',

@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import _ from "lodash";
 import { AlbumCard, AlbumCardProps } from "./AlbumCard";
 import { Album } from "../types";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 
 export interface AlbumSelectorProps {

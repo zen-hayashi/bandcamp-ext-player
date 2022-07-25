@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import _ from "lodash";
 import { Track } from "../types";
-import { TableBody, TableContainer, Table, TableRow, TableCell, Paper, Grid, Button } from "@material-ui/core";
+import { TableBody, TableContainer, Table, TableRow, TableCell, Paper, Grid, Button } from "@mui/material";
 import {TrackRow} from "./TrackRow";
 import styles from "./playlist.scss";
 
