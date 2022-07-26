@@ -9,7 +9,12 @@ export default {
   component: MediaController
 } as Meta;
 
-const Template: Story<MediaControllerProps> = (args) => <MediaController {...args} />;
+const Template: Story<MediaControllerProps> = (args) => {
+  return <div className='w-[600px]'>
+    <MediaController {...args} />
+  </div>
+  
+};
 
 export const Default = Template.bind({});
 Default.args = {

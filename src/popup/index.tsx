@@ -4,6 +4,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Store } from 'webext-redux'
 
+import "./index.css";
+
 function initApp() {
     const store = new Store();
     // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

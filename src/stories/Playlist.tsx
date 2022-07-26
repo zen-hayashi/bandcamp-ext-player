@@ -15,22 +15,23 @@ export const PlaylistComponent: React.FC<PlaylistComponentProps> = (props) => {
 
   return (<>
     <button onClick={props.handleClearPlaylist} >Clear Playlist</button>
-          <div>
-        <div>
-        <div>
-          
-          <div>
-            {
+      <table className="table-fixed w-full">
+        <thead>
+          <tr>
+            <th>Track</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th>Label</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
               props.playlist && props.playlist.map((track, i) =>
-                <div key={i}>
-                  <TrackRow track={track} handleSetNowPlaying={props.handleSetNowPlaying}></TrackRow>
-                </div>
+                  <TrackRow track={track} key={i} handleSetNowPlaying={props.handleSetNowPlaying}></TrackRow>
               )
-            }
-          </div>
-        </div>
-        </div>
-      </div>
+          }
+        </tbody>
+      </table>
       </>
   );
 }

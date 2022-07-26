@@ -18,7 +18,7 @@ export const addFavoriteThunk = createAsyncThunk<Album, Album, {}>(
             ref_token: album.secret.refToken,
             crumb: album.secret.crumbs.collect_item_cb
         }
-        let params = new URLSearchParams();
+        const params = new URLSearchParams();
         _.map(dataRaw, (key: string, value: string) => {
             params.append(key, value)
         })

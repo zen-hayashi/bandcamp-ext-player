@@ -4,22 +4,23 @@ import { Track } from "../types";
 
 export interface TrackRowProps {
     track: Track,
-    handleSetNowPlaying?: (track) => void
+    key: number,
+    handleSetNowPlaying?: (track:Track) => void
 }
 
-export const TrackRow = ({ track, handleSetNowPlaying } :TrackRowProps) =>{
-    return <>
-        <div>
-            <div>
-                <div aria-label="play" onClick={()=>handleSetNowPlaying(track)}>
-                    <button />
-                </div>
-            </div>
-            <div >
-                <div>
-                <p>{track.title}</p>
-            </div>
-            </div>
-        </div>
-    </>
+export const TrackRow = ({ track, key, handleSetNowPlaying } :TrackRowProps) =>{
+    return <tr key={key} className='cursor-pointer w-full border-b h-10' onClick={()=>handleSetNowPlaying(track)}>
+        <td className='text-center font-light'>
+            {track.title}
+        </td>
+        <td className='text-center font-light'>
+            {track.album.title}
+        </td>
+        <td className='text-center font-light'>
+            {track.album.artist}
+        </td>
+        <td className='text-center font-light'>
+            {track.album.label}
+        </td>
+    </tr>
 }

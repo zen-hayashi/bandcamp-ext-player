@@ -22,6 +22,7 @@ const useNowPlaying = () => {
 
     const handleAudioState = (playing: boolean) => {
         console.log('toggle state!');
+        console.log(playing);
         dispatch(nowPlayingSlice.actions.setPlayerState(playing));
     }
     const mediaControllerProps: MediaControllerProps = {
