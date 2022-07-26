@@ -62,8 +62,8 @@ const createButton = (state: any , album: Album) => {
     } else {
         button.addEventListener('click', () => {
             console.log('clicked');
+            store.dispatch({ type: 'albumList/addAlbum', payload: album })
             store.dispatch({ type: 'playlist/addTracksPlaylist', payload: album.tracks });
-            store.dispatch({ type: 'albumList/addAlbum', payload: album });
         })
     }
     target.appendChild(button);

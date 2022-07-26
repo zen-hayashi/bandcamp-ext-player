@@ -13,16 +13,17 @@
     },
 
     "content_scripts": [
-    {
-        "matches": [ "https://*.bandcamp.com/*" ],
-        "js": [ "js/eventPage.js" ]
-    }
-],
+        {
+            "matches": [ "https://*.bandcamp.com/*" ],
+            "js": [ "js/eventPage.js" ]
+        }
+    ],
 
     "background": {
         "page": "background.html",
         "persistent": false
     },
+    "content_security_policy": "script-src 'self' chrome-extension://lmhkpmbekcpmknklioeibfkpmmfibljd; object-src 'self'",
 
     "icons": {
         "16": "icon16.png",

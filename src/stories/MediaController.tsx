@@ -55,7 +55,7 @@ export const MediaController: React.FC<MediaControllerProps> = ({ track, playing
                                     
                                         {
                                             !playing &&
-                                            <button  onClick={() => handleAudioState(false)} >
+                                            <button  onClick={() => handleAudioState(true)} >
                                                 <div className="text-white p-8 rounded-full bg-red-500 shadow-lg">
                                                     <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M 6 3 L 19 10 L 6 17 Z"/></svg>
                                                 </div>
@@ -64,7 +64,7 @@ export const MediaController: React.FC<MediaControllerProps> = ({ track, playing
                                         }
                                         {
                                             playing &&
-                                            <button onClick={() => handleAudioState(true)}>
+                                            <button onClick={() => handleAudioState(false)}>
                                                 <div className="text-white p-8 rounded-full bg-red-500 shadow-lg">
                                                     <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z"/></svg>
                                                 </div>

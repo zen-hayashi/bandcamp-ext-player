@@ -10,6 +10,7 @@ const Background: React.FC = () => {
   const playlist:Track[] = useSelector(state => state.playlist);
   const nowPlaying:NowPlaying = useSelector(state => {
     console.log('state changed');
+    console.log(state);
     if (!ref?.current) {
       return state.nowPlaying;
     }
@@ -34,11 +35,11 @@ const Background: React.FC = () => {
 
   const startAudio = (): Promise<void> => ref.current?.play()
     .then(function (result) {
-      console.log('成功')
+      console.log('success')
       console.log(result)
     })
     .catch(function (exception) {
-      console.error('エラーが発生しました')
+      console.error('an error occured')
       console.error(exception)
     });
   const pauseAudio = (): void => ref.current?.pause();

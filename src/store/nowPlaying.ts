@@ -9,7 +9,7 @@ const initialState:NowPlaying = {
 
 export const setNowPlaying: CaseReducer<NowPlaying, PayloadAction<Track>> = (state, action) => {
     console.log('setNowPlaying');
-    return Object.assign({}, state, { track: action.payload })
+    return Object.assign({}, state, { track: action.payload, playing: true })
 }
 export const setPlayerState: CaseReducer<NowPlaying, PayloadAction<boolean>> = (state, action) => {
     console.log('setNowPlayerState!');
