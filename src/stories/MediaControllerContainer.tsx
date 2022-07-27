@@ -1,6 +1,4 @@
 import React from 'react';
-import { NowPlaying, Track } from "../types";
-import _ from 'lodash'
 import { MediaController } from './MediaController';
 import useNowPlaying from '../hooks/useNowPlaying';
 import usePlaylist from '../hooks/usePlaylist';

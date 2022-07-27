@@ -1,15 +1,16 @@
 import { createSlice, CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import { AlbumInfo, NowPlaying, Track } from "../types";
+import {  Album, NowPlaying, Track } from "../types";
 import _  from "lodash";
 
-const initialAlbumInfo: AlbumInfo = {
+const initialAlbumInfo: Album = {
+  id: 0,
+  title: '',
   artist: '',
   url: '',
   image: '',
   labelUrl: '',
   label: '',
   releaseDate: '',
-  title: '',
 }
 
 const initialTrack: Track = {
@@ -36,7 +37,6 @@ export const setPlayerState: CaseReducer<NowPlaying, PayloadAction<boolean>> = (
     state.playing = action.payload
     return state
 }
-
 
 export const nowPlayingSlice = createSlice({
   name: 'nowPlaying',

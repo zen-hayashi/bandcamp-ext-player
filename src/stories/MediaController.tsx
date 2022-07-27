@@ -9,6 +9,7 @@ export interface MediaControllerProps{
     setPrevTrack?: () => void,
     setNextTrack?: () => void,
     handleAudioState?: (boolean: boolean) => void,
+    toggleFavoriteNowPlaying?: () => void,
     isFirst: boolean,
     isLast: boolean
 }
@@ -16,7 +17,6 @@ export interface MediaControllerProps{
 export const MediaController: React.FC<MediaControllerProps> = (props) => {
     return (
         <div className="w-full">
-            <div className="h-2 bg-red-light"></div>
                 <div className="flex items-center w-full flex-wrap">
                     <div className="bg-white shadow-lg rounded-lg w-full">
                         <div className="grid grid-cols-3">
@@ -24,7 +24,7 @@ export const MediaController: React.FC<MediaControllerProps> = (props) => {
                                 <a href={props.nowPlaying.track?.album.url} target='_blank'>
                                     {
                                         props.nowPlaying.track?.album.image &&
-                                        <img className="w-full rounded hidden md:block"  src={props.nowPlaying.track?.album.image} alt="Album Pic"/>
+                                        <img className="w-full rounded md:block"  src={props.nowPlaying.track?.album.image} alt="Album Pic"/>
                                     }
                                     {
                                         !props.nowPlaying.track?.album.image &&
@@ -40,9 +40,17 @@ export const MediaController: React.FC<MediaControllerProps> = (props) => {
                                         <p className="text-sm text-grey mt-1">{props.nowPlaying.track?.album.artist}</p>
                                         <p className="text-sm text-grey mt-1">{props.nowPlaying.track?.album.label}</p>
                                     </div>
-                                    {/* <div className="text-red-lighter">
-                                        <svg className="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z"/></svg>
-                                    </div> */}
+                                    {
+                                        !props.nowPlaying.track.album.liked && <button className="text-red-lighter" onClick={() => props.toggleFavoriteNowPlaying()}>
+                                            <svg className="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z"/></svg>
+                                        </button>
+                                    }
+                                    {
+                                        props.nowPlaying.track.album.liked && <button className="text-red-lighter" onClick={() => props.toggleFavoriteNowPlaying()}>
+                                            <svg className="w-6 h-6 text-red-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z"/></svg>
+                                        </button>
+                                    }
+                                    
                                 </div>
                                 <div className="flex justify-evenly items-center mt-1">
                                     {/* <div className="text-grey-darker">

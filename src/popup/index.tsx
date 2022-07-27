@@ -18,7 +18,7 @@ function initApp() {
         // so you can use tools like `react-redux` no problem!
         render(
             <Provider store={store}>
-                    <Popup />
+                    <Popup/>
             </Provider>
             , document.getElementById('popup'));
     })

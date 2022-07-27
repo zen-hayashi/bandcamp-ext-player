@@ -1,4 +1,3 @@
-import { MediaControllerProps } from "../stories/MediaController";
 import { useSelector } from "../store";
 import _ from "lodash";
 import { useDispatch } from 'react-redux';
@@ -22,7 +21,7 @@ const useNowPlaying = () => {
         dispatch(setNowPlaying(prevTrack));
     }
 
-    const setNextTrack = () => {
+    const setNextTrack = () => { 
         const currentIndex = _.findIndex(playlist, { url: nowPlaying.track.url });
         const nextTrack = playlist[currentIndex + 1];
         dispatch(setNowPlaying(nextTrack));
@@ -33,12 +32,52 @@ const useNowPlaying = () => {
         console.log(playing);
         dispatch(nowPlayingSlice.actions.setPlayerState(playing));
     }
+    const toggleFavoriteNowPlaying = () => async (dispatch, getState) => {
+      const secret = getState().secret
+      const album = getState().nowPlaying.track.album
+      const liked = getState().nowPlaying.track.album.liked
+      const data = {
+        fan_id: album.fan_id,
+        item_id: album.item_id,
+        item_type: album,
+        band_id: album.band_id,
+        ref_token: secret.ref_token,
+        crumb: secret.crumb,
+      }
+      if (!liked) {
+        const response = await fetch(album.domain + '/collect_item_cb', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify(data),
+        })
+        return await response.json()
+      } else {
+        delete data.ref_token
+        const response = await fetch(album.domain + '/uncollect_item_cb', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify(data),
+        })
+        return await response.json()
+      }
+    }
 
     const mediaControllerProps = {
       nowPlaying,
       setPrevTrack,
       setNextTrack,
       handleAudioState,
+      toggleFavoriteNowPlaying,
     }
     return mediaControllerProps
 }

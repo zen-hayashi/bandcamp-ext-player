@@ -1,6 +1,7 @@
 import { createSlice, CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import { Track } from "../types";
 import _  from "lodash";
+import { nowPlayingSlice } from "./nowPlaying";
 
 const initialState:Track[] = [];
 
@@ -17,6 +18,16 @@ export const addTracksPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (
 }
 export const clearPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (state, action) => {
     return []
+}
+
+export function setTracksToPlaylist(tracks: Track[]) {
+    return function (dispatch, getState) {
+        dispatch(playlistSlice.actions.addTracksPlaylist(tracks));
+        if (getState().nowPlaying.track.title?.length == 0) {
+            dispatch(nowPlayingSlice.actions.setNowPlaying(tracks[0]));
+        }
+        return Promise.resolve();
+}
 }
 
 export const playlistSlice = createSlice({

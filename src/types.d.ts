@@ -5,7 +5,8 @@ export interface NowPlaying {
 
 export interface Progress {
   duration: number
-  currentTime: number
+  currentTime: number,
+  seekTime: number
 }
 
 export interface AlbumList {
@@ -21,24 +22,21 @@ export interface CurrentState {
     duration: number
 }
 
-export interface AlbumInfo {
-    title: string,
-    artist: string,
-    url: string,
-    image: string,
-    releaseDate: string,
-    label: string,
-    labelUrl?: string
-}
-
 export interface Album {
-    id: number,
-    info: AlbumInfo,
-    tracks?: Track[],
-    secret?: Secret,
-    domain: string,
-    liked: boolean,
-    bandId: string
+  id: number
+  title: string
+  artist: string
+  url: string
+  image?: string
+  info?: AlbumInfo
+  releaseDate?: string
+  labelUrl?: string
+  label?: string
+  tracks?: Track[]
+  secret?: Secret
+  domain?: string
+  liked?: boolean
+  bandId?: string
 }
 
 export interface Secret {
@@ -54,12 +52,12 @@ export interface Crumbs {
 }
 
 export interface Track {
-    id: string | null
+    id?: string
     title: string,
     url: string,
     file: string,
     duration: number,
-    album: AlbumInfo
+    album: Album
 }
 
 export interface State {
