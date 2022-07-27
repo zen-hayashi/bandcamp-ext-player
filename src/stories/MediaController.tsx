@@ -8,10 +8,12 @@ export interface MediaControllerProps{
     playing: boolean,
     setPrevTrack?: () => void,
     setNextTrack?: () => void,
-    handleAudioState?: (boolean: boolean) => void
+    handleAudioState?: (boolean: boolean) => void,
+    isFirst: boolean,
+    isLast: boolean,
 }
 
-export const MediaController: React.FC<MediaControllerProps> = ({ track, playing, setPrevTrack, setNextTrack, handleAudioState }) => {
+export const MediaController: React.FC<MediaControllerProps> = ({ track, playing, setPrevTrack, setNextTrack, handleAudioState, isFirst, isLast }) => {
     return (
         <div className="w-full">
             <div className="h-2 bg-red-light"></div>
@@ -47,7 +49,7 @@ export const MediaController: React.FC<MediaControllerProps> = ({ track, playing
                                         <svg onClick={setPrevTrack} className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6.59 12.83L4.4 15c-.58.58-1.59 1-2.4 1H0v-2h2c.29 0 .8-.2 1-.41l2.17-2.18 1.42 1.42zM16 4V1l4 4-4 4V6h-2c-.29 0-.8.2-1 .41l-2.17 2.18L9.4 7.17 11.6 5c.58-.58 1.59-1 2.41-1h2zm0 10v-3l4 4-4 4v-3h-2c-.82 0-1.83-.42-2.41-1l-8.6-8.59C2.8 6.21 2.3 6 2 6H0V4h2c.82 0 1.83.42 2.41 1l8.6 8.59c.2.2.7.41.99.41h2z"/></svg>
                                     </div> */}
                                     <div className="text-grey-darker">
-                                        <button  onClick={setPrevTrack}>
+                                        <button  onClick={setPrevTrack} disabled={isFirst}>
                                             <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 5h3v10H4V5zm12 0v10l-9-5 9-5z"/></svg>
                                         </button>
                                         
@@ -72,7 +74,7 @@ export const MediaController: React.FC<MediaControllerProps> = ({ track, playing
                                             
                                         }
                                     <div className="text-grey-darker">
-                                        <button  onClick={setNextTrack}>
+                                        <button  onClick={setNextTrack} disabled={isLast}>
                                             <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z"/></svg>
                                         </button>
                                         

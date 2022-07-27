@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import _ from "lodash";
 import { Track } from "../types";
-import {TrackRow} from "./TrackRow";
+import { TrackRowContainer } from "./TrackRowContainer";
 
 
 
@@ -26,9 +26,9 @@ export const PlaylistComponent: React.FC<PlaylistComponentProps> = (props) => {
         </thead>
         <tbody>
           {
-              props.playlist && props.playlist.map((track, i) =>
-                  <TrackRow track={track} key={i} handleSetNowPlaying={props.handleSetNowPlaying}></TrackRow>
-              )
+              props.playlist && props.playlist.map((track) => {
+                return <TrackRowContainer track={track} handleSetNowPlaying={props.handleSetNowPlaying}></TrackRowContainer>
+              })
           }
         </tbody>
       </table>

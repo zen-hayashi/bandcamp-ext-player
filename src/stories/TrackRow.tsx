@@ -4,12 +4,12 @@ import { Track } from "../types";
 
 export interface TrackRowProps {
     track: Track,
-    key: number,
+    isPlaying?: boolean,
     handleSetNowPlaying?: (track:Track) => void
 }
 
-export const TrackRow = ({ track, key, handleSetNowPlaying } :TrackRowProps) =>{
-    return <tr key={key} className='cursor-pointer w-full border-b h-10' onClick={()=>handleSetNowPlaying(track)}>
+export const TrackRow = ({ track, isPlaying = false,handleSetNowPlaying } :TrackRowProps) =>{
+    return <tr key={track.id} className={`cursor-pointer w-full border-b h-10 ${isPlaying? 'bg-slate-300': ''}`} onClick={()=>handleSetNowPlaying(track)}>
         <td className='text-center font-light'>
             {track.title}
         </td>

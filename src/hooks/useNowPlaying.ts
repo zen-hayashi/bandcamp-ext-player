@@ -25,7 +25,7 @@ const useNowPlaying = () => {
         console.log(playing);
         dispatch(nowPlayingSlice.actions.setPlayerState(playing));
     }
-    const mediaControllerProps: MediaControllerProps = {
+    const mediaControllerProps = {
         track: nowPlaying.track,
         playing: nowPlaying.playing,
         setPrevTrack: setPrevTrack,

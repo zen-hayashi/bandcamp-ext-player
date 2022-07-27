@@ -1,5 +1,5 @@
 import { createSlice, CaseReducer, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { Track, Album } from "../types";
+import { State,  Album, AlbumList } from '../types'
 import _  from "lodash";
 import axios from "axios";
 
@@ -33,8 +33,25 @@ export const addFavoriteThunk = createAsyncThunk<Album, Album, {}>(
     }
 )
 
+// export const addAlbumToPlayList = createAsyncThunk<void, Album, { state: State }>(
+//   'albunList/addAlbumToPlayList',
+//   (album: Album, { dispatch, getState }) => {
+//     console.log('thunk');
+//     const currentAlbumList = getState().albumList;
+//     if (currentAlbumList.filter((x) => x.id == album.id).length == 0) {
+//         console.log('resolve');
+//         dispatch(albumListSlice.actions.addAlbum(album))
+//       return Promise.resolve();
+//     } else {
+//         console.log('reject')
+//         dispatch(albumListSlice.actions.addAlbum(album))
+//       return Promise.reject();
+//     }
+//   }
+// )
+
 export const addAlbum: CaseReducer<Album[], PayloadAction<Album>> = (state, action) => {
-    console.log('album added!')
+    console.log('album added!');
     return [...state, action.payload];
 }
 
@@ -49,11 +66,18 @@ export const albumListSlice = createSlice({
         addAlbum,
         clearAlbumList
     },
-    extraReducers: (builder) => {
-        builder.addCase(addFavoriteThunk.fulfilled, (state, action) => {
+    // extraReducers: (builder) => {
+    //     builder.addCase(addFavoriteThunk.fulfilled, (state, action) => {
             
-        })
-    }
+    //     })
+    // }
 })
+
+export const addAlbumToPlayList = (album: Album) => (dispatch, getState) =>{
+    console.log('dispatched!')
+    const state = getState()
+    dispatch(albumListSlice.actions.addAlbum(album))
+    return Promise.resolve()
+}
 
 export default albumListSlice.reducer;

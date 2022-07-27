@@ -49,9 +49,20 @@ export interface Crumbs {
 }
 
 export interface Track {
+    id: string | null
     title: string,
     url: string,
     file: string,
     duration: number,
     album: AlbumInfo
+}
+
+export interface State {
+  playlist: Track[]
+  currentPageAlbum: Album
+  nowPlaying: {
+    playing: boolean,
+    track: Track
+  },
+  albumList: Album[]
 }

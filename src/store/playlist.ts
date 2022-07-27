@@ -4,9 +4,16 @@ import _  from "lodash";
 
 const initialState:Track[] = [];
 
+const getRandomString = (n: number) => {
+    var S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    var N=n
+    return Array.from(Array(N)).map(()=>S[Math.floor(Math.random()*S.length)]).join('')
+}
+
 export const addTracksPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (state, action) => {
-    console.log('tracks added!')
-    return _.concat(state, action.payload)
+    console.log('tracks added!');
+    const tracks: Track[] = action.payload.map((track) => Object.assign({ id: getRandomString(8) }, track))
+    return _.concat(state, tracks)
 }
 export const clearPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (state, action) => {
     return []

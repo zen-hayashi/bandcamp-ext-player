@@ -1,19 +1,12 @@
 import React from "react";
 import _ from "lodash";
-import { MediaController,MediaControllerProps } from "../stories/MediaController";
-import { PlaylistComponent, PlaylistComponentProps } from "../stories/Playlist";
-import { AlbumSelector } from '../stories/AlbumSelector'
 import useNowPlaying from "../hooks/useNowPlaying";
-import usePlaylist from "../hooks/usePlaylist";
-import { useDispatch } from "react-redux";
-import { useSelector } from "../store";
+import { PlaylistContainer } from "../stories/PlaylistContainer";
+import { MediaControllerContainer } from "../stories/MediaControllerContainer";
 
 export default function Popup() {
   // const dispatch = useDispatch();
   // const albumList = useSelector(state => state.albumList);
-  const PlaylistComponentProps = usePlaylist();
-  const mediaControllerProps = useNowPlaying();
-  
   // const addFavorite = (album: Album) => {
   //   console.log(album);
   //   dispatch(addFavoriteThunk(album));
@@ -25,11 +18,11 @@ export default function Popup() {
         {/* <AlbumSelector albums={albumList} addFavorite={addFavorite}></AlbumSelector> */}
       </div>
     <div >
-        <MediaController {...mediaControllerProps}></MediaController>
+        <MediaControllerContainer></MediaControllerContainer>
       </div>
     <div >
         <div>
-          <PlaylistComponent {...PlaylistComponentProps}></PlaylistComponent>
+          <PlaylistContainer></PlaylistContainer>
         </div>
       </div>
     </div>

@@ -1,11 +1,16 @@
-import { Album, AlbumInfo, Track, Secret } from "./types";
+import { Album, AlbumInfo, Track, Secret, State } from "./types";
 import { Store } from 'webext-redux'
 import _ from "lodash";
+import { addAlbumToPlayList, albumListSlice } from "./store/albumList";
+import { useDispatch } from "react-redux";
+import playlist, { playlistSlice } from "./store/playlist";
 
 const store = new Store();
+// const dispatch = useDispatch()
 
 const main = () => {
     console.log("contents js excute!");
+    
     const state = store.getState();
     console.log(state);
     
@@ -20,7 +25,7 @@ const main = () => {
     const fanId = JSON.parse(pageData.getAttribute("data-tralbum-collect-info")).fan_id;
     const crumbs = JSON.parse(pageCrumbs.getAttribute('data-crumbs'));
     const cookie = window.document.cookie;
-    const secret = {
+    const secret:Secret = {
         refToken,
         fanId,
         cookie,
@@ -52,7 +57,7 @@ const main = () => {
     createButton(state ,album);
 }
 
-const createButton = (state: any , album: Album) => {
+const createButton = async (state: State , album: Album) => {
     const button = window.document.createElement('button');
     const text = window.document.createTextNode('add to playlist');
     button.appendChild(text);
@@ -62,8 +67,9 @@ const createButton = (state: any , album: Album) => {
     } else {
         button.addEventListener('click', () => {
             console.log('clicked');
-            store.dispatch({ type: 'albumList/addAlbum', payload: album })
-            store.dispatch({ type: 'playlist/addTracksPlaylist', payload: album.tracks });
+            // store.dispatch(addAlbumToPlayList(album));
+            store.dispatch(albumListSlice.actions.addAlbum(album));
+            store.dispatch(playlistSlice.actions.addTracksPlaylist(album.tracks));
         })
     }
     target.appendChild(button);
