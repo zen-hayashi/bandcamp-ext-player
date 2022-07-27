@@ -11,6 +11,6 @@ export interface TrackRowProps {
 
 export const TrackRowContainer = ({ track, handleSetNowPlaying } :TrackRowProps) =>{
     const mediaControllerProps = useNowPlaying();
-    const isPlaying = mediaControllerProps.track.id == track.id;
+    const isPlaying = mediaControllerProps.nowPlaying.track.id == track.id;
     return <TrackRow track={track} isPlaying={isPlaying} handleSetNowPlaying={handleSetNowPlaying}></TrackRow>
 }

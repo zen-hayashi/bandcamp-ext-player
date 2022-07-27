@@ -2,16 +2,18 @@ import playlistReducer from "./playlist";
 import currentPageAlbumReducer from "./currentPageAlbum";
 import nowPlayingReducer from "./nowPlaying";
 import albumListReducer from "./albumList";
+import progressReducer from "./progress";
 import thunk from 'redux-thunk'
 import { useSelector as rawUseSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
 const reducer = combineReducers({
-    playlist: playlistReducer,
-    currentPageAlbum: currentPageAlbumReducer,
-    nowPlaying: nowPlayingReducer,
-    albumList: albumListReducer
+  playlist: playlistReducer,
+  currentPageAlbum: currentPageAlbumReducer,
+  nowPlaying: nowPlayingReducer,
+  albumList: albumListReducer,
+  progress: progressReducer,
 })
 const middlewares = [thunk, logger]
 

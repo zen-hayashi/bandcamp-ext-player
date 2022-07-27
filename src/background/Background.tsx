@@ -4,6 +4,7 @@ import { NowPlaying, Track } from "../types";
 import { useDispatch } from 'react-redux';
 import { nowPlayingSlice } from "../store/nowPlaying";
 import _ from "lodash";
+import { progressSlice } from "../store/progress";
 
 const Background: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,10 +28,18 @@ const Background: React.FC = () => {
       setNextTrack(nowPlaying.track, playlist);
       })
   })
+  useEffect(() =>{
+    ref.current.addEventListener('timeupdate' ,() => {
+      setCurrentTime(Math.round(ref.current.currentTime));
+    })
+  })
   const setNextTrack = (currentTrack: Track, playlist: Track[]) => {
     const currentIndex = _.findIndex(playlist, { url: currentTrack.url });
     const nextTrack = playlist[currentIndex + 1];
     dispatch(nowPlayingSlice.actions.setNowPlaying(nextTrack));
+  }
+  const setCurrentTime = (currentTime: number) => {
+    dispatch(progressSlice.actions.setCurrentTime(currentTime));
   }
 
   const startAudio = (): Promise<void> => ref.current?.play()

@@ -1,6 +1,11 @@
 export interface NowPlaying {
-    track: Track,
-    playing: boolean
+  track: Track
+  playing: boolean
+}
+
+export interface Progress {
+  duration: number
+  currentTime: number
 }
 
 export interface AlbumList {

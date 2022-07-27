@@ -5,9 +5,9 @@ import _  from "lodash";
 const initialState:Track[] = [];
 
 const getRandomString = (n: number) => {
-    var S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    var N=n
-    return Array.from(Array(N)).map(()=>S[Math.floor(Math.random()*S.length)]).join('')
+    const S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const N=n;
+    return Array.from(Array(N)).map(()=>S[Math.floor(Math.random()*S.length)]).join('');
 }
 
 export const addTracksPlaylist: CaseReducer<Track[], PayloadAction<Track[]>> = (state, action) => {

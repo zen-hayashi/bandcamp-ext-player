@@ -12,18 +12,8 @@ export default function Popup() {
   //   dispatch(addFavoriteThunk(album));
   // } 
 
-  return <div>
-      <div >
-        {/* <AlbumSelector albums={albumList} ></AlbumSelector> */}
-        {/* <AlbumSelector albums={albumList} addFavorite={addFavorite}></AlbumSelector> */}
-      </div>
-    <div >
-        <MediaControllerContainer></MediaControllerContainer>
-      </div>
-    <div >
-        <div>
-          <PlaylistContainer></PlaylistContainer>
-        </div>
-      </div>
+  return <div className='w-[600px]'>
+      <MediaControllerContainer></MediaControllerContainer>
+      <PlaylistContainer></PlaylistContainer>
     </div>
 }

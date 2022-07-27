@@ -1,11 +1,31 @@
 import { createSlice, CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import { NowPlaying, Track } from "../types";
+import { AlbumInfo, NowPlaying, Track } from "../types";
 import _  from "lodash";
 
-const initialState:NowPlaying = {
-    track: null,
-    playing: false
-};
+const initialAlbumInfo: AlbumInfo = {
+  artist: '',
+  url: '',
+  image: '',
+  labelUrl: '',
+  label: '',
+  releaseDate: '',
+  title: '',
+}
+
+const initialTrack: Track = {
+  id: '',
+  title: '',
+  url: '',
+  file: '',
+  duration: 0,
+  album: initialAlbumInfo,
+}
+
+
+const initialState: NowPlaying = {
+  track: initialTrack,
+  playing: false,
+}
 
 export const setNowPlaying: CaseReducer<NowPlaying, PayloadAction<Track>> = (state, action) => {
     console.log('setNowPlaying');
@@ -17,13 +37,14 @@ export const setPlayerState: CaseReducer<NowPlaying, PayloadAction<boolean>> = (
     return state
 }
 
+
 export const nowPlayingSlice = createSlice({
-    name: "nowPlaying",
-    initialState,
-    reducers: {
-        setNowPlaying,
-        setPlayerState
-    }
+  name: 'nowPlaying',
+  initialState,
+  reducers: {
+    setNowPlaying,
+    setPlayerState,
+  },
 })
 
 export default nowPlayingSlice.reducer;
