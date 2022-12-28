@@ -13,9 +13,9 @@ export interface PlaylistComponentProps{
 
 export const PlaylistComponent: React.FC<PlaylistComponentProps> = (props) => {
 
-  return (<>
+  return (<div className="overflow-x-auto">
     <button onClick={props.handleClearPlaylist} >Clear Playlist</button>
-      <table className="table-fixed w-full">
+      <table className="table w-full">
         <thead>
           <tr>
             <th>Track</th>
@@ -32,6 +32,6 @@ export const PlaylistComponent: React.FC<PlaylistComponentProps> = (props) => {
           }
         </tbody>
       </table>
-      </>
+    </div>
   );
 }

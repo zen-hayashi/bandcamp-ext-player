@@ -2,7 +2,9 @@ import { createSlice, CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import { Secret } from "../types";
 
 const initialState = {
-  
+  refToken: '',
+  cookie: '',
+  fanId: '',
 }
 
 export const setSecret: CaseReducer<Secret, PayloadAction<Secret>> = (state, action) => {

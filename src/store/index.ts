@@ -3,6 +3,7 @@ import currentPageAlbumReducer from "./currentPageAlbum";
 import nowPlayingReducer from "./nowPlaying";
 import albumListReducer from "./albumList";
 import progressReducer from "./progress";
+import secretReducer from './secret'
 import thunk from 'redux-thunk'
 import { useSelector as rawUseSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   nowPlaying: nowPlayingReducer,
   albumList: albumListReducer,
   progress: progressReducer,
+  secret: secretReducer,
 })
 const middlewares = [thunk, logger]
 

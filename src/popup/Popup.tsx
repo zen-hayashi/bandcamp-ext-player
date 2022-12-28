@@ -12,7 +12,7 @@ export default function Popup() {
   //   dispatch(addFavoriteThunk(album));
   // } 
 
-  return <div className='w-[600px]'>
+  return <div className='artboard artboard-horizontal phone-5'>
       <MediaControllerContainer></MediaControllerContainer>
       <PlaylistContainer></PlaylistContainer>
     </div>

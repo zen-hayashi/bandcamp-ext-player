@@ -2,6 +2,7 @@ import React from 'react';
 import { NowPlaying, Track } from "../types";
 import _ from 'lodash'
 import { ProgressBar } from './ProgressBar';
+import nowPlaying, { addFavorite } from '../store/nowPlaying';
 
 
 export interface MediaControllerProps{
@@ -10,26 +11,35 @@ export interface MediaControllerProps{
     setNextTrack?: () => void,
     handleAudioState?: (boolean: boolean) => void,
     toggleFavoriteNowPlaying?: () => void,
+    addFavoriteNowPlaying: () => void,
     isFirst: boolean,
     isLast: boolean
 }
 
 export const MediaController: React.FC<MediaControllerProps> = (props) => {
+    const handleAddFavorite = (e:React.MouseEvent<HTMLElement>) => {
+      console.log('clicked');
+      props.addFavoriteNowPlaying();
+    }
     return (
-        <div className="w-full">
+        <div className="w-full card">
                 <div className="flex items-center w-full flex-wrap">
-                    <div className="bg-white shadow-lg rounded-lg w-full">
+                    <div className=" shadow-lg rounded-lg w-full">
                         <div className="grid grid-cols-3">
                             <div className='col-span-1'>
-                                <a href={props.nowPlaying.track?.album.url} target='_blank'>
+                                <a className='flex  justify-center items-stretch h-full' href={props.nowPlaying.track?.album.url} target='_blank'>
+                                    <div className="avatar self-center">
+                                        <div className="w-full rounded">
                                     {
                                         props.nowPlaying.track?.album.image &&
-                                        <img className="w-full rounded md:block"  src={props.nowPlaying.track?.album.image} alt="Album Pic"/>
+                                            <img src={props.nowPlaying.track?.album.image} alt="Album Pic"/>
                                     }
                                     {
                                         !props.nowPlaying.track?.album.image &&
-                                        <div className="w-full rounded hidden md:block" />
+                                        <img src='https://placehold.jp/150x150.png' />
                                     }
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                             <div className="col-span-2 p-4">
@@ -41,18 +51,18 @@ export const MediaController: React.FC<MediaControllerProps> = (props) => {
                                         <p className="text-sm text-grey mt-1">{props.nowPlaying.track?.album.label}</p>
                                     </div>
                                     {
-                                        !props.nowPlaying.track.album.liked && <button className="text-red-lighter" onClick={() => props.toggleFavoriteNowPlaying()}>
+                                        !props.nowPlaying.track.album.liked && <button className="text-red-lighter btn btn-circle" onClick={handleAddFavorite}>
                                             <svg className="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z"/></svg>
                                         </button>
                                     }
                                     {
-                                        props.nowPlaying.track.album.liked && <button className="text-red-lighter" onClick={() => props.toggleFavoriteNowPlaying()}>
+                                        props.nowPlaying.track.album.liked && <button className="text-red-lighter btn btn-circle" onClick={handleAddFavorite}>
                                             <svg className="w-6 h-6 text-red-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z"/></svg>
                                         </button>
                                     }
                                     
                                 </div>
-                                <div className="flex justify-evenly items-center mt-1">
+                                <div className="flex justify-evenly items-center mt-5">
                                     {/* <div className="text-grey-darker">
                                         <svg onClick={setPrevTrack} className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6.59 12.83L4.4 15c-.58.58-1.59 1-2.4 1H0v-2h2c.29 0 .8-.2 1-.41l2.17-2.18 1.42 1.42zM16 4V1l4 4-4 4V6h-2c-.29 0-.8.2-1 .41l-2.17 2.18L9.4 7.17 11.6 5c.58-.58 1.59-1 2.41-1h2zm0 10v-3l4 4-4 4v-3h-2c-.82 0-1.83-.42-2.41-1l-8.6-8.59C2.8 6.21 2.3 6 2 6H0V4h2c.82 0 1.83.42 2.41 1l8.6 8.59c.2.2.7.41.99.41h2z"/></svg>
                                     </div> */}

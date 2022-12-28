@@ -43,7 +43,7 @@ export interface Secret {
     refToken: string,
     cookie: string,
     fanId: string,
-    crumbs: Crumbs
+    crumbs?: Crumbs
 }
 
 export interface Crumbs {

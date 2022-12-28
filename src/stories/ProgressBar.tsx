@@ -32,9 +32,9 @@ export const ProgressBar: React.FC = () => {
           <p>{convertTime(progress.duration)}</p>
       </div>
       <div className="mt-1">
-          <div className="h-1 bg-grey-dark rounded-full">
+          <div className="h-10 bg-grey-dark rounded-full flex">
             <input id="progress_bar" type="range" value={progressPercentage} onChange={handleChange} className="mb-6 w-full h-1
-             bg-gray-200 rounded-lg appearance-none accent-red-500  cursor-pointer range-sm dark:bg-red-500"></input>
+              rounded-lg appearance-none accent-red-500  cursor-pointer range-sm dark:bg-red-500 self-center"></input>
           </div>
       </div>
   </div>

@@ -9,17 +9,17 @@ export interface TrackRowProps {
 }
 
 export const TrackRow = ({ track, isPlaying = false,handleSetNowPlaying } :TrackRowProps) =>{
-    return <tr key={track.id} className={`cursor-pointer w-full border-b h-10 ${isPlaying? 'bg-slate-300': ''}`} onClick={()=>handleSetNowPlaying(track)}>
-        <td className='text-center font-light'>
+    return <tr key={track.id} className={`cursor-pointer w-full border-b h-10 ${isPlaying? 'active': ''}`} onClick={()=>handleSetNowPlaying(track)}>
+        <td>
             {track.title}
         </td>
-        <td className='text-center font-light'>
+        <td>
             {track.album.title}
         </td>
-        <td className='text-center font-light'>
+        <td>
             {track.album.artist}
         </td>
-        <td className='text-center font-light'>
+        <td>
             {track.album.label}
         </td>
     </tr>

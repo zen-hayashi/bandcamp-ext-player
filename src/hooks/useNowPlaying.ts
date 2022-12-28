@@ -1,9 +1,9 @@
 import { useSelector } from "../store";
 import _ from "lodash";
 import { useDispatch } from 'react-redux';
-import { nowPlayingSlice } from "../store/nowPlaying";
+import { addFavorite, nowPlayingSlice } from "../store/nowPlaying";
 import { progressSlice } from "../store/progress";
-import { Track } from "../types";
+import { Album, Track } from "../types";
 
 const useNowPlaying = () => {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const useNowPlaying = () => {
     }
 
     const setNextTrack = () => { 
-        const currentIndex = _.findIndex(playlist, { url: nowPlaying.track.url });
+        const currentIndex = _.findIndex(playlist, { id: nowPlaying.track.id });
         const nextTrack = playlist[currentIndex + 1];
         dispatch(setNowPlaying(nextTrack));
     }
@@ -32,6 +32,12 @@ const useNowPlaying = () => {
         console.log(playing);
         dispatch(nowPlayingSlice.actions.setPlayerState(playing));
     }
+
+    const addFavoriteNowPlaying = () => {
+      dispatch(addFavorite(nowPlaying.track.album));
+      console.log('add favorite dispatched')
+    }
+
     const toggleFavoriteNowPlaying = () => async (dispatch, getState) => {
       const secret = getState().secret
       const album = getState().nowPlaying.track.album
@@ -55,7 +61,7 @@ const useNowPlaying = () => {
           },
           body: JSON.stringify(data),
         })
-        return await response.json()
+        await response.json()
       } else {
         delete data.ref_token
         const response = await fetch(album.domain + '/uncollect_item_cb', {
@@ -78,6 +84,7 @@ const useNowPlaying = () => {
       setNextTrack,
       handleAudioState,
       toggleFavoriteNowPlaying,
+      addFavoriteNowPlaying,
     }
     return mediaControllerProps
 }
